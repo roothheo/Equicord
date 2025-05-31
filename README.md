@@ -214,101 +214,6 @@ You can join our [discord server](https://discord.gg/5Xh2W87egW) for commits, ch
 
 </details>
 
-## Installing / Uninstalling
-
-Windows
-
-- [GUI](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.exe)
-- [CLI](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli.exe)
-
-MacOS
-
-- [GUI](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl.MacOS.zip)
-
-Linux
-
-- [GUI-X11](https://github.com/Equicord/Equilotl/releases/latest/download/Equilotl-x11)
-- [CLI](https://github.com/Equicord/Equilotl/releases/latest/download/EquilotlCli-Linux)
-- [AUR](https://aur.archlinux.org/packages?O=0&K=equicord)
-
-```shell
-sh -c "$(curl -sS https://raw.githubusercontent.com/Equicord/Equicord/refs/heads/main/misc/install.sh)"
-```
-
-## Installing Equicord Devbuild
-
-### Dependencies
-
-[Git](https://git-scm.com/download) and [Node.JS LTS](https://nodejs.dev/en/) are required.
-
-Install `pnpm`:
-
-> :exclamation: This next command may need to be run as admin/root depending on your system, and you may need to close and reopen your terminal for pnpm to be in your PATH.
-
-```shell
-npm i -g pnpm
-```
-
-> :exclamation: **IMPORTANT** Make sure you aren't using an admin/root terminal from here onwards. It **will** mess up your Discord/Equicord instance and you **will** most likely have to reinstall.
-
-Clone Equicord:
-
-```shell
-git clone https://github.com/Equicord/Equicord
-cd Equicord
-```
-
-Install dependencies:
-
-```shell
-pnpm install --no-frozen-lockfile
-```
-
-Build Equicord:
-
-```shell
-pnpm build
-```
-
-Inject Equicord into your client:
-
-```shell
-pnpm inject
-```
-
-## Credits
-
-Thank you to [Vendicated](https://github.com/Vendicated) for creating [Vencord](https://github.com/Vendicated/Vencord) & [Suncord](https://github.com/verticalsync/Suncord) by [verticalsync](https://github.com/verticalsync) for helping when needed.
-
-## Star History
-
-<a href="https://star-history.com/#Equicord/Equicord&Timeline">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Equicord/Equicord&type=Timeline" />
-  </picture>
-</a>
-
-## Disclaimer
-
-Discord is trademark of Discord Inc. and solely mentioned for the sake of descriptivity.
-Mentioning it does not imply any affiliation with or endorsement by Discord Inc.
-Vencord is not connected to Equicord and as such, all donation links go to Vendicated's donation link.
-
-<details>
-<summary>Using Equicord violates Discord's terms of service</summary>
-
-Client modifications are against Discord's Terms of Service.
-
-However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine if you don't use plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
-
-Regardless, if your account is essential to you and getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Equicord), just to be safe
-
-Additionally, make sure not to post screenshots with Equicord in a server where you might get banned for it
-
-</details>
-
 ## Prérequis
 
 - Python 3.8 ou supérieur
@@ -319,8 +224,8 @@ Additionally, make sure not to post screenshots with Equicord in a server where 
 
 ### Windows
 
-1. Téléchargez le fichier `install.py` depuis ce dépôt
-2. Ouvrez un terminal (cmd ou PowerShell) et naviguez vers le dossier où vous avez téléchargé le fichier
+1. Téléchargez le dossier `install` depuis ce dépôt
+2. Ouvrez un terminal (cmd ou PowerShell) et naviguez vers le dossier `install`
 3. Exécutez la commande suivante :
    ```bash
    python install.py
@@ -329,21 +234,22 @@ Additionally, make sure not to post screenshots with Equicord in a server where 
 
 ### Linux
 
-1. Téléchargez le fichier `equicord_updater.sh` depuis ce dépôt
-2. Ouvrez un terminal et rendez le script exécutable :
+1. Téléchargez le dossier `install` depuis ce dépôt
+2. Ouvrez un terminal et naviguez vers le dossier `install`
+3. Rendez le script exécutable :
    ```bash
    chmod +x equicord_updater.sh
    ```
-3. Exécutez le script :
+4. Exécutez le script :
    ```bash
    ./equicord_updater.sh
    ```
-4. Suivez les instructions à l'écran
+5. Suivez les instructions à l'écran
 
 ### macOS
 
-1. Téléchargez le fichier `install.py` depuis ce dépôt
-2. Ouvrez le Terminal et naviguez vers le dossier où vous avez téléchargé le fichier
+1. Téléchargez le dossier `install` depuis ce dépôt
+2. Ouvrez le Terminal et naviguez vers le dossier `install`
 3. Exécutez la commande suivante :
    ```bash
    python3 install.py
