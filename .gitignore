@@ -30,3 +30,10 @@ src/equicordplugins/usrpe
 
 # vencord companion module cache
 .modules
+
+# Clés API et fichiers sensibles
+src/userplugins/chatGpt/index.ts
+*.api.key
+.env
+.env.local
+config/api-keys.json
