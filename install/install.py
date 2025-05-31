@@ -12,6 +12,7 @@ import os
 from datetime import datetime
 from packaging import version
 import argparse
+import shutil
 
 class EquicordUpdater:
     def __init__(self, project_path="/home/bash/Desktop/dev/bashcord"):
@@ -282,33 +283,89 @@ class EquicordUpdater:
         
         return True
 
-def main():
-    parser = argparse.ArgumentParser(description="Vérifier et mettre à jour Equicord")
-    parser.add_argument("--check", action="store_true", help="Vérifier seulement (défaut)")
-    parser.add_argument("--update", action="store_true", help="Effectuer la mise à jour")
-    parser.add_argument("--dry-run", action="store_true", help="Simulation de mise à jour")
-    parser.add_argument("--path", default="/home/bash/Desktop/dev/bashcord", help="Chemin du projet")
+def check_and_install_dependencies(project_path):
+    """
+    Vérifie et installe git, node.js et pnpm si besoin, puis exécute pnpm install, build et inject.
+    """
+    import platform
+    import time
     
-    args = parser.parse_args()
-    
-    updater = EquicordUpdater(args.path)
-    
-    if args.update:
-        if not updater.show_update_summary():
-            sys.exit(1)
-        
-        print("\n" + "="*60)
-        confirm = input("🚀 Voulez-vous effectuer la mise à jour? (y/N): ")
-        if confirm.lower() in ['y', 'yes', 'oui']:
-            updater.safe_update(dry_run=False)
+    def is_installed(cmd):
+        return shutil.which(cmd) is not None
+
+    # Vérification de git
+    if not is_installed("git"):
+        print("❌ git n'est pas installé !")
+        if platform.system() == "Linux":
+            print("➡️  Installation de git (sudo requis)...")
+            subprocess.run(["sudo", "apt", "update"])  # Pour Debian/Ubuntu
+            subprocess.run(["sudo", "apt", "install", "-y", "git"])
+        elif platform.system() == "Darwin":
+            print("➡️  Installation de git via Homebrew...")
+            subprocess.run(["brew", "install", "git"])
         else:
-            print("❌ Mise à jour annulée")
-    elif args.dry_run:
-        updater.show_update_summary()
-        updater.safe_update(dry_run=True)
+            print("Veuillez installer git manuellement : https://git-scm.com/download/win")
+            return False
     else:
-        # Par défaut: juste vérifier
-        updater.show_update_summary()
+        print("✅ git est installé")
+
+    # Vérification de node
+    if not is_installed("node"):
+        print("❌ node.js n'est pas installé !")
+        if platform.system() == "Linux":
+            print("➡️  Installation de node.js (sudo requis)...")
+            subprocess.run(["sudo", "apt", "update"])
+            subprocess.run(["sudo", "apt", "install", "-y", "nodejs", "npm"])
+        elif platform.system() == "Darwin":
+            print("➡️  Installation de node via Homebrew...")
+            subprocess.run(["brew", "install", "node"])
+        else:
+            print("Veuillez installer Node.js manuellement : https://nodejs.org/en/download/")
+            return False
+    else:
+        print("✅ node.js est installé")
+
+    # Vérification de pnpm
+    if not is_installed("pnpm"):
+        print("➡️  Installation de pnpm...")
+        subprocess.run(["npm", "install", "-g", "pnpm"])
+    else:
+        print("✅ pnpm est installé")
+
+    # Installation des dépendances Node.js
+    print("\n📦 Installation des dépendances Node.js (pnpm install)...")
+    subprocess.run(["pnpm", "install", "--no-frozen-lockfile"], cwd=project_path, check=True)
+
+    # Build
+    print("\n🔨 Build d'Equicord (pnpm build)...")
+    subprocess.run(["pnpm", "build"], cwd=project_path, check=True)
+
+    # Injection
+    print("\n🚀 Injection d'Equicord dans Discord (pnpm inject)...")
+    subprocess.run(["pnpm", "inject"], cwd=project_path, check=True)
+
+    print("\n✅ Installation complète !")
+    return True
+
+def main():
+    # Chemin du projet (dossier parent du script install)
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    print(f"📁 Dossier du projet : {project_path}")
+
+    # 1. Vérifier et installer les dépendances + build + inject
+    check_and_install_dependencies(project_path)
+
+    # 2. Mettre à jour le dépôt (pull depuis upstream si possible)
+    updater = EquicordUpdater(project_path)
+    print("\n🔄 Mise à jour du dépôt depuis upstream (si possible)...")
+    try:
+        subprocess.run(["git", "fetch", "upstream"], cwd=project_path, check=True)
+        subprocess.run(["git", "merge", "upstream/main"], cwd=project_path, check=True)
+    except Exception as e:
+        print(f"⚠️  Impossible de merger upstream automatiquement : {e}")
+
+    # 3. Afficher un résumé de l'état
+    updater.show_update_summary()
 
 if __name__ == "__main__":
     main() 
