@@ -21,8 +21,7 @@ lerna-debug.log*
 .pnpm-debug.log*
 *.tsbuildinfo
 
-src/userplugins
-
+# ExtensionCache et settings
 ExtensionCache/
 settings/
 
@@ -37,3 +36,5 @@ src/userplugins/chatGpt/index.ts
 .env
 .env.local
 config/api-keys.json
+
+.venv
