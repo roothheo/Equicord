@@ -24,19 +24,21 @@ let targetUserId: string | null = null;
 const UserContextMenuPatch: NavContextMenuPatchCallback = (children, { user }: { user: User; }) => {
     const currentUser = UserStore.getCurrentUser();
     if (!user || user.id === currentUser.id) return;
-    const isActive = targetUserId === user.id;
+    const [checked, setChecked] = React.useState(targetUserId === user.id);
     children.push(
         React.createElement(Menu.MenuSeparator, {}),
         React.createElement(Menu.MenuCheckboxItem, {
             id: "autodeco-context",
-            label: isActive ? "Désactiver AutoDeco" : "Activer AutoDeco",
-            checked: isActive,
+            label: checked ? "Désactiver AutoDeco" : "Activer AutoDeco",
+            checked,
             action: () => {
-                if (isActive) {
+                if (checked) {
                     targetUserId = null;
+                    setChecked(false);
                     showNotification({ title: "AutoDeco", body: `AutoDeco désactivé pour ${user.username}` });
                 } else {
                     targetUserId = user.id;
+                    setChecked(true);
                     showNotification({ title: "AutoDeco", body: `AutoDeco activé pour ${user.username}` });
                 }
             }
