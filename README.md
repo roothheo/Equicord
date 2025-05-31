@@ -299,12 +299,80 @@ Vencord is not connected to Equicord and as such, all donation links go to Vendi
 <details>
 <summary>Using Equicord violates Discord's terms of service</summary>
 
-Client modifications are against Discord’s Terms of Service.
+Client modifications are against Discord's Terms of Service.
 
-However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine if you don’t use plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
+However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine if you don't use plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
 
 Regardless, if your account is essential to you and getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Equicord), just to be safe
 
 Additionally, make sure not to post screenshots with Equicord in a server where you might get banned for it
 
 </details>
+
+## Prérequis
+
+- Python 3.8 ou supérieur
+- Node.js 16 ou supérieur
+- pnpm (gestionnaire de paquets Node.js)
+
+## Installation
+
+### Windows
+
+1. Téléchargez le fichier `install.py` depuis ce dépôt
+2. Ouvrez un terminal (cmd ou PowerShell) et naviguez vers le dossier où vous avez téléchargé le fichier
+3. Exécutez la commande suivante :
+   ```bash
+   python install.py
+   ```
+4. Suivez les instructions à l'écran
+
+### Linux
+
+1. Téléchargez le fichier `equicord_updater.sh` depuis ce dépôt
+2. Ouvrez un terminal et rendez le script exécutable :
+   ```bash
+   chmod +x equicord_updater.sh
+   ```
+3. Exécutez le script :
+   ```bash
+   ./equicord_updater.sh
+   ```
+4. Suivez les instructions à l'écran
+
+### macOS
+
+1. Téléchargez le fichier `install.py` depuis ce dépôt
+2. Ouvrez le Terminal et naviguez vers le dossier où vous avez téléchargé le fichier
+3. Exécutez la commande suivante :
+   ```bash
+   python3 install.py
+   ```
+4. Suivez les instructions à l'écran
+
+## Mise à jour
+
+Pour mettre à jour Equicord, utilisez le même script d'installation que vous avez utilisé initialement. Le script détectera automatiquement si une mise à jour est disponible.
+
+## Plugins personnalisés
+
+Vous pouvez ajouter vos propres plugins dans le dossier `src/equicordplugins/`. Les plugins existants ne seront pas affectés lors des mises à jour.
+
+## Dépannage
+
+Si vous rencontrez des problèmes lors de l'installation :
+
+1. Assurez-vous que Python et Node.js sont correctement installés
+2. Vérifiez que vous avez les permissions nécessaires pour exécuter les scripts
+3. Consultez le fichier `UPDATER_README.md` pour plus d'informations sur le processus de mise à jour
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+- Signaler des bugs
+- Proposer des améliorations
+- Soumettre des pull requests
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
