@@ -262,7 +262,7 @@ Pour mettre à jour Equicord, utilisez le même script d'installation que vous a
 
 ## Plugins personnalisés
 
-Vous pouvez ajouter vos propres plugins dans le dossier `src/equicordplugins/`. Les plugins existants ne seront pas affectés lors des mises à jour.
+Vous pouvez ajouter vos propres plugins dans le dossier `src/usersplugins`. Les plugins existants ne seront pas affectés lors des mises à jour.
 
 ## Dépannage
 
