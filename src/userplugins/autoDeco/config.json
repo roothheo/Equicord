@@ -1,0 +1,7 @@
+{
+    "name": "AutoDeco",
+    "description": "Se déconnecte automatiquement du canal vocal lorsqu'un utilisateur spécifique rejoint",
+    "version": "1.0.0",
+    "author": "Bashcord",
+    "main": "index.ts"
+} 
