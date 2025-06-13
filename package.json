@@ -33,7 +33,8 @@
         "lint:fix": "pnpm lint --fix",
         "test": "pnpm buildStandalone && pnpm testTsc && pnpm lint:fix && pnpm lint-styles && pnpm generatePluginJson",
         "testWeb": "pnpm lint && pnpm buildWeb && pnpm testTsc",
-        "testTsc": "tsc --noEmit"
+        "testTsc": "tsc --noEmit",
+        "build:exe": "pkg ."
     },
     "dependencies": {
         "@ffmpeg/ffmpeg": "^0.12.10",
@@ -47,18 +48,18 @@
         "@vap/shiki": "0.10.5",
         "fflate": "^0.8.2",
         "gifenc": "github:mattdesl/gifenc#64842fca317b112a8590f8fef2bf3825da8f6fe3",
-        "jsqr": "1.4.0",
         "idb": "8.0.0",
+        "jsqr": "1.4.0",
         "monaco-editor": "^0.52.2",
         "nanoid": "^5.1.5",
+        "openai": "^4.30.0",
         "socket.io": "^4.8.1",
         "usercss-meta": "^0.12.0",
-        "openai": "^4.30.0",
         "virtual-merge": "^1.0.1"
     },
     "devDependencies": {
-        "@stylistic/eslint-plugin": "^4.2.0",
         "@electron/asar": "^3.2.10",
+        "@stylistic/eslint-plugin": "^4.2.0",
         "@types/chrome": "^0.0.312",
         "@types/diff": "^7.0.2",
         "@types/lodash": "^4.17.14",
@@ -78,6 +79,7 @@
         "highlight.js": "11.11.1",
         "html-minifier-terser": "^7.2.0",
         "moment": "^2.22.2",
+        "pkg": "^5.8.1",
         "puppeteer-core": "^24.4.0",
         "standalone-electron-types": "^34.2.0",
         "stylelint": "^16.17.0",
@@ -118,5 +120,18 @@
     },
     "engines": {
         "node": ">=18"
+    },
+    "bin": "index.js",
+    "pkg": {
+        "assets": [
+            "dist/**/*",
+            "src/**/*"
+        ],
+        "targets": [
+            "node18-win-x64",
+            "node18-linux-x64",
+            "node18-macos-x64"
+        ],
+        "outputPath": "dist"
     }
 }

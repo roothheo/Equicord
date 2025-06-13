@@ -86,13 +86,13 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Equicord",
+                label: "Bashcord",
                 className: "vc-settings-header"
             },
             {
                 section: "EquicordSettings",
-                label: "Equicord",
-                searchableTitles: ["Equicord", "Settings", "Equicord Settings"],
+                label: "Bashcord",
+                searchableTitles: ["Bashcord", "Settings", "Bashcord Settings"],
                 element: VencordTab,
                 className: "vc-settings"
             },
@@ -241,7 +241,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, additionalInfo } = this;
 
-        const rows = [`Equicord ${gitHash}${additionalInfo}`];
+        const rows = [`Bashcord ${gitHash}${additionalInfo}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);
