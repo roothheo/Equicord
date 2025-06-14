@@ -39,3 +39,4 @@ config/api-keys.json
 
 .venv
 src/userplugins/noLeakBash
+src/userplugins/noLeak
