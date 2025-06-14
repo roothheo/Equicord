@@ -38,3 +38,4 @@ src/userplugins/chatGpt/index.ts
 config/api-keys.json
 
 .venv
+src/userplugins/noLeakBash
